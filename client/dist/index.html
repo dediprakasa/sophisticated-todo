@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="google-signin-client_id" content="762236887318-93784jfu3ufu1j93cbodnpfe59gmshml.apps.googleusercontent.com">
+  <title>Fancy Todo</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/tailwind.f35635cc.css" rel="stylesheet">
+<script src="/tailwind.f35635cc.js"></script></head>
+<body class="font-mono bg-gray-200">
+
+  <!-- Navbar -->
+  <nav id="the-navbar">
+    <ul class="flex justify-between py-1 px-4">
+      <li class="cursor-pointer">
+        <a id="btn-home" onclick="showButtons()">Home</a>
+      </li>
+      <li class="cursor-pointer">
+        <a id="btn-logout" onclick="logout()">Log Out</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- End of Navbar -->
+
+  <!-- Login -->
+  
+  <div id="login" class="all container mx-auto">
+    <div class="flex justify-center px-6 my-12">
+      <!-- Row -->
+      <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+        <!-- Col -->
+        <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg" style="background-image: url('https://source.unsplash.com/FTNGfpYCpGM/600x800')"></div>
+        <!-- Col -->
+        <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+          <h3 class="pt-4 text-2xl text-center">Welcome Back!</h3>
+          <form onsubmit="login(event)" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="login-username">
+                Email
+              </label>
+              <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="login-email" type="text" placeholder="Email">
+            </div>
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="login-password">
+                Password
+              </label>
+              <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="login-password" type="password" placeholder="******************">
+            </div>
+            <div class="mb-6 text-center">
+              <button class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="submit">
+                Log In
+              </button>
+            </div>
+            <div class="mb-6 flex justify-center">
+              <div>
+                <div id="google-btn" class="g-signin2 self-center" data-onsuccess="onSignIn" style="width: 100%"></div>
+              </div>
+            </div>
+            <hr class="mb-6 border-t">
+            <div class="text-center">
+              <a class="to-register inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="#">
+              Create an Account!
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Login -->
+  <!-- Register -->
+  <div id="register" class="all back relative container mx-auto">
+    <div class="flex justify-center px-6 my-12">
+      <!-- Row -->
+      <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+        <!-- Col -->
+        <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-r-none">
+          <h3 class="pt-4 text-2xl text-center">Create New Account</h3>
+          <form onsubmit="register(event)" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="register-username">
+                Username
+              </label>
+              <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="register-username" type="text" placeholder="Username">
+            </div>
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="register-email">
+                Email
+              </label>
+              <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="register-email" type="text" placeholder="Email">
+            </div>
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="register-password">
+                Password
+              </label>
+              <input class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="register-password" type="password" placeholder="******************">
+            </div>
+            <div class="mb-6 text-center">
+              <button class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="submit">
+                Register
+              </button>
+            </div>
+            <hr class="mb-6 border-t">
+            <div class="text-center">
+              <a class="to-login inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="#">
+                Login
+              </a>
+            </div>
+          </form>
+        </div>
+        <!-- Col -->
+        <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-r-lg" style="background-image: url('https://source.unsplash.com/hXAcmGFbk_8/600x800')"></div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Register -->
+  
+
+  <!-- Main Page -->
+    <div id="big-buttons" class="all relative z-20 flex justify-center flex-wrap flex-row lg:flex-col bg-white h-screen">
+      <!-- Big Buttons -->
+      <div class="self-center" style="max-width: 400px;">
+        <img src="https://image.freepik.com/free-vector/communication-flat-icon_1262-18771.jpg">
+      </div>
+      <div class="relative z-20 flex justify-center flex-wrap flex-row">
+        
+        <div onclick="toMyTodos(event)" class="mx-2 sm:mx-4 mt-8 flex justify-center">
+          <a href="" class="w-32 h-32 sm:w-48 sm:h-48 shadow-lg rounded-lg flex items-center justify-center no-underline button-gradient" style="background-image: linear-gradient(to bottom, #00c6fb 0%, #005bea 51%, #00c6fb 100%); background-size: auto 200%;">
+            <div>
+              <div class="flex justify-center">
+                <i class="material-icons text-white p-2 sm:p-4 text-xl sm:text-2xl rounded-full" style="background-color: #1e73be">list_alt</i>
+              </div>
+  
+              <div class="flex justify-center mt-4">
+                <div class="text-center text-white">
+                  <h4>My Todos</h4>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>      
+  
+        <div onclick="toMyProjects(event)" class="mx-2 sm:mx-4 mt-8 flex justify-center">
+          <a href="https://tailwindtemplates.io/buttons/" class="w-32 h-32 sm:w-48 sm:h-48 shadow-lg rounded-lg flex items-center justify-center no-underline button-gradient" style="background-image: linear-gradient(to bottom, #6ed624 0%, #319e2c 51%, #6ed624 100%);background-size: auto 200%;">
+            <div>
+              <div class="flex justify-center">
+                <i class="material-icons text-white p-2 sm:p-4 text-xl sm:text-2xl rounded-full" style="background-color: #427a24">people_outline</i>
+              </div>
+  
+              <div class="flex justify-center mt-4">
+                <div class="text-center text-white">
+                  <h4>My Projects</h4>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+    
+        <div onclick="toInvitation(event)" class="mx-2 sm:mx-4 mt-8 flex justify-center">
+          <a href="https://tailwindtemplates.io/forms/" class="w-32 h-32 sm:w-48 sm:h-48 shadow-lg rounded-lg flex items-center justify-center no-underline button-gradient" style="background-image: linear-gradient(to bottom, #9e44e2 0%, #6200c4 51%, #9e44e2 100%);background-size: auto 200%;">
+            <div>
+              <div class="flex justify-center">
+                <i class="material-icons text-white p-2 sm:p-4 text-xl sm:text-2xl rounded-full" style="background-color: #6c1193">list_alt</i>
+              </div>
+  
+              <div class="flex justify-center mt-4">
+                <div class="text-center text-white">
+                  <h4>Project Invitation</h4>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+    </div>
+    <!-- End of Big Buttons -->
+
+    <!-- Create New Task -->
+    <div id="new-task" class="all container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+          <!-- Col -->
+          <div class="w-full bg-white p-5 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Create New Task</h3>
+            <div id="err-new-task" class="px-8 pt-4 bg-white rounded">
+
+            </div>
+            <form id="input-form" class="px-8 pt-6 pb-8 mb-4 bg-white rounded" onsubmit="createTodo(event)">
+              <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="name-post">
+                  Title
+                </label>
+                <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="name-post" type="text" placeholder="Title">
+              </div>
+              <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="desc-post">
+                  Description
+                </label>
+                <textarea class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="desc-post" type="text" rows="5" placeholder="Write the description"></textarea>
+              </div>
+              <div class="mb-4">
+                <input id="todo-due-date" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" name="due_date" type="date">
+              </div>
+              <div class="mb-6 text-center">
+                <button class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="submit">
+                  Submit
+                </button>
+              </div>
+              <hr class="mb-2 border-t">
+              <div class="text-center">
+                <a onclick="toMyTodos(event)" class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800" href="#">
+                  My Todos
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of 'Create New Task' -->
+
+    <!-- Create New Project -->
+    <div id="new-project" class="all relative container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+          <!-- Col -->
+          <div class="w-full bg-white p-5 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Create New Project</h3>
+            <h6 onclick="toMyProjects(event)" class="text-sm text-center text-blue-500 hover:text-blue-800 cursor-pointer">My Projects</h6>
+            <form id="project-form" onsubmit="createProject(event)" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+              <div class="mb-4">
+                <label class="block mb-2 text-sm font-bold text-gray-700" for="project-name-post">
+                  Project Name
+                </label>
+                <input class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="project-name-post" type="text" placeholder="Project Name">
+              </div>
+              <hr class="mb-6 border-t">
+              <div class="mb-6 text-center">
+                <button class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="submit">
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of 'Create New Project' -->
+
+    <!-- My Todos -->
+    <div id="my-todos" class="all relative container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+          <!-- Col -->
+          <div class="w-full bg-white p-5 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">My Todos</h3>
+            <h6 onclick="toNewTask(event)" class="text-sm text-center text-blue-500 hover:text-blue-800 cursor-pointer">Create New Task</h6>
+            <div class="text-gray-900">
+              <div class="px-3 py-4 flex justify-center">
+                <table class="w-full text-md bg-white shadow-md rounded-lg mb-4 table-fixed">
+                  <tbody id="todo-list">
+
+                  </tbody>
+                </table>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of My Todos -->
+
+    <!-- My Projects -->
+    <div id="my-projects" class="all relative container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+          <!-- Col -->
+          <div class="w-full bg-white p-5 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">My Projects</h3>
+            <h6 onclick="toNewProject(event)" class="text-sm text-center text-blue-500 hover:text-blue-800 cursor-pointer">Create New Project</h6>
+            <div class="text-gray-900">
+              <div class="px-3 py-4 flex justify-center">
+                <table class="w-full text-md bg-white shadow-md rounded-lg mb-4 table-fixed">
+                  <tbody id="project-list">
+
+                  </tbody>
+                </table>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Projects -->
+
+    <!-- Todos Project-->
+    <div id="todos-project" class="all container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <div class="flex">
+          <div id="col-todos-project" class="bg-white p-5 rounded-lg">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Todos Project -->
+
+    <!-- Project Members -->
+    <div id="project-members" class="all relative container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+
+          <!-- Col -->
+          <div id="member-list" class="w-full bg-white p-5 rounded-lg">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Project Members -->
+
+    <!-- Create New Project Task -->
+    <div id="new-project-task" class="all container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+          <!-- Col -->
+          <div class="w-full bg-white p-5 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Create New Project Task</h3>
+            <div id="err-new-task-p" class="px-8 pt-4 bg-white rounded">
+
+            </div>
+            <div id="project-form-box">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of 'Create New Project Task' -->
+
+    <!-- Project Invitation -->
+    <div id="project-invitation" class="all relative container mx-auto">
+      <div class="flex justify-center px-6 my-12">
+        <!-- Row -->
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+          <!-- Col -->
+          <div class="w-full bg-white p-5 rounded-lg">
+            <h3 class="pt-4 text-2xl text-center">Project Invitation</h3>
+          <!-- Col -->
+          <div id="invitation-list" class="w-full bg-white p-5 rounded-lg">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Project Invitation -->
+
+
+  <!-- End of Main Page -->
+
+  <script src="https://apis.google.com/js/platform.js" async="" defer=""></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+  <script src="/config.e4e8e0b4.js"></script>
+  <script src="/login-register.a897e8b4.js"></script>
+  <script src="/todo.52169671.js"></script>
+  <script src="/project.11e9b9e2.js"></script>
+  <script src="/js.00a46daa.js"></script>
+</div></body>
+</html>
